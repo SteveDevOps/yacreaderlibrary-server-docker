@@ -33,8 +33,7 @@ RUN \
     nano \
     zlib1g-dev \
     liblzma-dev \
-    libbz2-dev \
-    libunarr-dev
+    libbz2-dev
 
 RUN \
  echo "**** clone YACReader locally****" && \
@@ -59,7 +58,7 @@ RUN \
  make && \
  make install && \
  ldconfig && \
- ldconfig -n /usr/local/lib/ && \
+ ldconfig /usr/local/lib/ && \
  LD_LIBRARY_PATH=/usr/local/lib/
 
 RUN \
