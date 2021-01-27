@@ -63,8 +63,9 @@ RUN \
  echo "**** building YACReaderServerLibrary ****" && \
  cd /src/git/YACReaderLibraryServer && \
  qmake "CONFIG+=server_standalone" YACReaderLibraryServer.pro && \
- make  && \
- make install
+ make && \
+ make install && \
+ YACReaderLibraryServer add-library Comic\ Libraries /comics/Libraries
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
