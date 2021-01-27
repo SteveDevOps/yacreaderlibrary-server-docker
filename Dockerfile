@@ -58,15 +58,14 @@ RUN \
  cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
  make && \
  make install && \
- ldconfig -nV /usr/local/lib/
+ ldconfig -V /usr/local/lib/
 
 RUN \
  echo "**** building YACReaderServerLibrary ****" && \
  cd /src/git/YACReaderLibraryServer && \
  qmake "CONFIG+=server_standalone" YACReaderLibraryServer.pro && \
  make && \
- make install && \
- YACReaderLibraryServer add-library Comic\ Libraries /comics/Libraries
+ make install
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
