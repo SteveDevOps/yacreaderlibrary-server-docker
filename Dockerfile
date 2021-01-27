@@ -31,7 +31,7 @@ RUN \
     build-essential	\
     cmake \
     nano \
-    libunarr-dev \
+    libunarr-dev
 	
 RUN \
  echo "**** install YACReader ****" && \
