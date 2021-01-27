@@ -53,6 +53,7 @@ RUN \
  mkdir build && \
  cd /src/git/compressed_archive/unarr/build && \
  cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
+ make && \
  make install && \
  LD_LIBRARY_PATH=/usr/local/lib/ && \
  echo $LD_LIBRARY_PATH
