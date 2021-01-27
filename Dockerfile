@@ -34,7 +34,7 @@ RUN \
     libunarr-dev
 
 RUN \
- echo "**** install YACReader ****" && \
+ echo "**** clone YACReader locally****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
 	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/develop \
 	| awk '/sha/{print $4;exit}' FS='[""]'); \
@@ -43,6 +43,7 @@ RUN \
  git checkout ${YACR_COMMIT}
 
 RUN \
+ echo "**** install unarr libraries with 7zip support ****" && \
  cd /src/git/compressed_archive/ && \
  mv unarr/ unarr-bak && \
  cd /src/git/compressed_archive/unarr-bak/ && \
@@ -59,6 +60,7 @@ RUN \
  echo $LD_LIBRARY_PATH
 
 RUN \
+ echo "**** building YACReaderServerLibrary ****" && \
  cd /src/git/YACReaderLibraryServer && \
  qmake "CONFIG+=server_standalone" YACReaderLibraryServer.pro && \
  make  && \
