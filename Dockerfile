@@ -29,9 +29,9 @@ RUN \
     unzip \
     wget \   
     build-essential	\
-	cmake \
-	nano \
-	libunarr-dev \
+    cmake \
+    nano \
+    libunarr-dev \
 	
 RUN \
  echo "**** install YACReader ****" && \
