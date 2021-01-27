@@ -33,7 +33,8 @@ RUN \
     nano \
     zlib1g-dev \
     liblzma-dev \
-    libbz2-dev
+    libbz2-dev \
+    libunarr-dev
 
 RUN \
  echo "**** clone YACReader locally****" && \
@@ -57,8 +58,7 @@ RUN \
  cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
  make && \
  make install && \
- ldconfig && \
- ldconfig /usr/local/lib/ && \
+ ldconfig -nV /usr/local/lib/ && \
  LD_LIBRARY_PATH=/usr/local/lib/
 
 RUN \
