@@ -42,18 +42,18 @@ RUN \
  git clone -b develop --single-branch https://github.com/YACReader/yacreader.git . && \
  git checkout ${YACR_COMMIT}
 RUN \
- cd compressed_archive/ && \
- mv unarr/ unarr-bak
- cd unarr-bak
- cp * ../unarr
- cd ..
- git clone https://github.com/selmf/unarr
- cd unarr
- mkdir build
- cd build
- cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON
- make install
- LD_LIBRARY_PATH=/usr/local/lib/
+ cd /compressed_archive/ && \
+ mv unarr/ unarr-bak && \
+ cd unarr-bak && \
+ cp * ../unarr && \
+ cd .. && \
+ git clone https://github.com/selmf/unarr && \
+ cd unarr && \
+ mkdir build && \
+ cd build && \
+ cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
+ make install && \
+ LD_LIBRARY_PATH=/usr/local/lib/ && \
  echo $LD_LIBRARY_PATH
 RUN \
  cd /src/git/YACReaderLibraryServer && \
