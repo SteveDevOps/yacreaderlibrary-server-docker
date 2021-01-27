@@ -31,6 +31,9 @@ RUN \
     build-essential	\
     cmake \
     nano \
+    zlib1g-dev \
+    liblzma-dev \
+    libbz2-dev \
     libunarr-dev
 
 RUN \
@@ -47,15 +50,17 @@ RUN \
  cd /src/git/compressed_archive/ && \
  mv unarr/ unarr-bak && \
  git clone https://github.com/selmf/unarr && \
+ cd /src/git/compressed_archive/unarr-bak/ && \
+ cp * /src/git/compressed_archive/unarr/ && \
  cd /src/git/compressed_archive/unarr/ && \
  mkdir build && \
  cd /src/git/compressed_archive/unarr/build && \
  cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
  make && \
  make install && \
+ ldconfig && \
  ldconfig -n /usr/local/lib/ && \
- LD_LIBRARY_PATH=/usr/local/lib/ && \
- echo $LD_LIBRARY_PATH
+ LD_LIBRARY_PATH=/usr/local/lib/
 
 RUN \
  echo "**** building YACReaderServerLibrary ****" && \
