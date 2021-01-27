@@ -28,7 +28,8 @@ RUN \
     sqlite3 \
     unzip \
     wget \   
-    build-essential	
+    build-essential	\
+	cmake
 RUN \
  echo "**** install YACReader ****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
@@ -38,12 +39,15 @@ RUN \
  git clone -b develop --single-branch https://github.com/YACReader/yacreader.git . && \
  git checkout ${YACR_COMMIT}
 RUN \
- cd compressed_archive/unarr/ && \
- wget https://github.com/selmf/unarr/archive/master.zip && \
- unzip master.zip  && \
- rm master.zip && \
- cd unarr-master/lzmasdk && \
- ln -s 7zTypes.h Types.h
+ cd compressed_archive/ && \
+ git clone https://github.com/selmf/unarr
+ cd unarr
+ mkdir build
+ cd build
+ cmake .. -DENABLE_7Z=ON
+ make install
+ LD_LIBRARY_PATH=/usr/local/lib/
+ echo $LD_LIBRARY_PATH
 RUN \
  cd /src/git/YACReaderLibraryServer && \
  qmake "CONFIG+=server_standalone" YACReaderLibraryServer.pro && \
