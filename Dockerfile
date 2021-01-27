@@ -29,7 +29,10 @@ RUN \
     unzip \
     wget \   
     build-essential	\
-	cmake
+	cmake \
+	nano \
+	libunarr-dev \
+	
 RUN \
  echo "**** install YACReader ****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
@@ -40,11 +43,15 @@ RUN \
  git checkout ${YACR_COMMIT}
 RUN \
  cd compressed_archive/ && \
+ mv unarr/ unarr-bak
+ cd unarr-bak
+ cp * ../unarr
+ cd ..
  git clone https://github.com/selmf/unarr
  cd unarr
  mkdir build
  cd build
- cmake .. -DENABLE_7Z=ON
+ cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON
  make install
  LD_LIBRARY_PATH=/usr/local/lib/
  echo $LD_LIBRARY_PATH
