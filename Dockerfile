@@ -1,7 +1,7 @@
 FROM debian:buster
 
 ARG YACR_COMMIT
-LABEL maintainer="xthursdayx"
+LABEL maintainer="wolgan"
 
 WORKDIR /src/git
 
@@ -32,7 +32,7 @@ RUN \
     cmake \
     nano \
     libunarr-dev
-	
+
 RUN \
  echo "**** install YACReader ****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
@@ -41,20 +41,22 @@ RUN \
  fi && \
  git clone -b develop --single-branch https://github.com/YACReader/yacreader.git . && \
  git checkout ${YACR_COMMIT}
+
 RUN \
- cd /compressed_archive/ && \
+ cd /src/git/compressed_archive/ && \
  mv unarr/ unarr-bak && \
- cd unarr-bak && \
+ cd /src/git/compressed_archive/unarr-bak/ && \
  cp * ../unarr && \
- cd .. && \
+ cd /src/git/compressed_archive/ && \
  git clone https://github.com/selmf/unarr && \
- cd unarr && \
+ cd /src/git/compressed_archive/unarr/ && \
  mkdir build && \
- cd build && \
+ cd /src/git/compressed_archive/unarr/build && \
  cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
  make install && \
  LD_LIBRARY_PATH=/usr/local/lib/ && \
  echo $LD_LIBRARY_PATH
+
 RUN \
  cd /src/git/YACReaderLibraryServer && \
  qmake "CONFIG+=server_standalone" YACReaderLibraryServer.pro && \
