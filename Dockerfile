@@ -71,6 +71,9 @@ ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
 VOLUME /comics
 
+RUN \
+ YACReaderLibraryServer add-library Comic\ Libraries /comics/Libraries
+
 EXPOSE 8080
 
 ENV LC_ALL=C.UTF8
