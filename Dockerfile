@@ -55,6 +55,7 @@ RUN \
  cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
  make && \
  make install && \
+ ldconfig -n /usr/local/lib/ && \
  LD_LIBRARY_PATH=/usr/local/lib/ && \
  echo $LD_LIBRARY_PATH
 
