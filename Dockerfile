@@ -49,15 +49,6 @@ RUN \
  qmake "CONFIG+=server_standalone" YACReaderLibraryServer.pro && \
  make  && \
  make install
-RUN \
- echo "**** cleanup ****" && \
- cd / && \
- apt-get clean && \
- apt-get purge -y git wget build-essential && \
- apt-get -y autoremove && \
- rm -rf \
-        /src \
-        /var/cache/apt
 
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
