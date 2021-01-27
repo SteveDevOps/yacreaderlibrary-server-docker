@@ -4,7 +4,6 @@ ARG YACR_COMMIT
 LABEL maintainer="wolgan"
 
 WORKDIR /src/git
-ENV LD_LIBRARY_PATH=/usr/local/lib/
 
 RUN \
  echo "**** install runtime packages ****" && \
@@ -47,6 +46,8 @@ RUN \
 
 RUN \
  echo "**** install unarr libraries with 7zip support ****" && \
+ LD_LIBRARY_PATH=/usr/local/lib/ && \
+ export LD_LIBRARY_PATH && \
  cd /src/git/compressed_archive/ && \
  mv unarr/ unarr-bak && \
  git clone https://github.com/selmf/unarr && \
