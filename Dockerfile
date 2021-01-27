@@ -47,8 +47,6 @@ RUN \
  cd /src/git/compressed_archive/ && \
  mv unarr/ unarr-bak && \
  git clone https://github.com/selmf/unarr && \
- cd /src/git/compressed_archive/unarr-bak/ && \
- cp * /src/git/compressed_archive/unarr/ && \
  cd /src/git/compressed_archive/unarr/ && \
  mkdir build && \
  cd /src/git/compressed_archive/unarr/build && \
