@@ -32,10 +32,10 @@ RUN \
 RUN \
  echo "**** install YACReader ****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
-	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/master \
+	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/develop \
 	| awk '/sha/{print $4;exit}' FS='[""]'); \
  fi && \
- git clone -b master --single-branch https://github.com/YACReader/yacreader.git . && \
+ git clone -b develop --single-branch https://github.com/YACReader/yacreader.git . && \
  git checkout ${YACR_COMMIT}
 RUN \
  cd compressed_archive/unarr/ && \
