@@ -33,8 +33,7 @@ RUN \
     nano \
     zlib1g-dev \
     liblzma-dev \
-    libbz2-dev \
-    libunarr-dev
+    libbz2-dev
 
 RUN \
  echo "**** clone YACReader locally****" && \
@@ -58,7 +57,10 @@ RUN \
  make && \
  make install && \
  printenv LD_LIBRARY_PATH && \
- ldconfig -V
+ ldconfig -V && \
+ ln -s /src/git/unarr/unarr.h /usr/include/unarr.h && \
+ ln -s /usr/local/lib/libunarr.so /usr/lib/x86_64-linux-gnu/libunarr.so && \
+ ln -s /usr/local/lib/pkgconfig/libunarr.pc /usr/lib/x86_64-linux-gnu/pkgconfig/libunarr.pc
 
 RUN \
  echo "**** building YACReaderServerLibrary ****" && \
@@ -70,9 +72,6 @@ RUN \
 ADD YACReaderLibrary.ini /root/.local/share/YACReader/YACReaderLibrary/
 
 VOLUME /comics
-
-RUN \
- YACReaderLibraryServer add-library Comic\ Libraries /comics/Libraries
 
 EXPOSE 8080
 
