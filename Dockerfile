@@ -60,6 +60,8 @@ RUN \
  ldconfig -V && \
  ln -s /src/git/unarr/unarr.h /usr/include/unarr.h && \
  ln -s /usr/local/lib/libunarr.so /usr/lib/x86_64-linux-gnu/libunarr.so && \
+ ln -s /usr/local/lib/libunarr.so /usr/lib/x86_64-linux-gnu/libunarr.so.1 && \
+ ln -s /usr/local/lib/libunarr.so /usr/lib/x86_64-linux-gnu/libunarr.so.1.0.1 && \
  ln -s /usr/local/lib/pkgconfig/libunarr.pc /usr/lib/x86_64-linux-gnu/pkgconfig/libunarr.pc
 
 RUN \
