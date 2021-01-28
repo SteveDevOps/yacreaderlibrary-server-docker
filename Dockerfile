@@ -49,25 +49,19 @@ RUN \
  echo "**** install unarr libraries with 7zip support ****" && \
  LD_LIBRARY_PATH=/usr/local/lib/ && \
  export LD_LIBRARY_PATH && \
- cd /src/git/compressed_archive/ && \
- mv unarr/ unarr-bak && \
+ cd /src/git/ && \
  git clone https://github.com/selmf/unarr && \
- cd /src/git/compressed_archive/unarr-bak/ && \
- cp * /src/git/compressed_archive/unarr/ && \
- cd /src/git/compressed_archive/unarr/ && \
- ls -l && \
+ cd /src/git/unarr/ && \
  mkdir build && \
- cd /src/git/compressed_archive/unarr/build && \
+ cd /src/git/unarr/build && \
  cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
  make && \
  make install && \
- ldconfig -V /usr/local/lib/
+ printenv LD_LIBRARY_PATH && \
+ ldconfig -V
 
 RUN \
  echo "**** building YACReaderServerLibrary ****" && \
- printenv LD_LIBRARY_PATH && \
- LD_LIBRARY_PATH=/usr/local/lib/ && \
- export LD_LIBRARY_PATH && \
  cd /src/git/YACReaderLibraryServer && \
  qmake "CONFIG+=server_standalone" YACReaderLibraryServer.pro && \
  make && \
