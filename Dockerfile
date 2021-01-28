@@ -33,7 +33,8 @@ RUN \
     nano \
     zlib1g-dev \
     liblzma-dev \
-    libbz2-dev
+    libbz2-dev \
+    libunarr-dev
 
 RUN \
  echo "**** clone YACReader locally****" && \
@@ -54,16 +55,16 @@ RUN \
  cd /src/git/compressed_archive/unarr-bak/ && \
  cp * /src/git/compressed_archive/unarr/ && \
  cd /src/git/compressed_archive/unarr/ && \
+ ls -l && \
  mkdir build && \
  cd /src/git/compressed_archive/unarr/build && \
- cmake .. -DENABLE_7Z=ON && \
+ cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
  make && \
  make install && \
  ldconfig -V /usr/local/lib/
 
 RUN \
  echo "**** building YACReaderServerLibrary ****" && \
- PATH=$PATH:~/usr/local/lib && \
  printenv LD_LIBRARY_PATH && \
  LD_LIBRARY_PATH=/usr/local/lib/ && \
  export LD_LIBRARY_PATH && \
