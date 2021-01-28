@@ -63,7 +63,8 @@ RUN \
 
 RUN \
  echo "**** building YACReaderServerLibrary ****" && \
- echo printenv LD_LIBRARY_PATH && \
+ PATH=$PATH:~/usr/local/lib && \
+ printenv LD_LIBRARY_PATH && \
  LD_LIBRARY_PATH=/usr/local/lib/ && \
  export LD_LIBRARY_PATH && \
  cd /src/git/YACReaderLibraryServer && \
