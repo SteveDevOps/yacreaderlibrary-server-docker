@@ -56,13 +56,16 @@ RUN \
  cd /src/git/compressed_archive/unarr/ && \
  mkdir build && \
  cd /src/git/compressed_archive/unarr/build && \
- cmake .. -DENABLE_7Z=ON -DBUILD_SHARED_LIBS=ON && \
+ cmake .. -DENABLE_7Z=ON && \
  make && \
  make install && \
  ldconfig -V /usr/local/lib/
 
 RUN \
  echo "**** building YACReaderServerLibrary ****" && \
+ echo printenv LD_LIBRARY_PATH && \
+ LD_LIBRARY_PATH=/usr/local/lib/ && \
+ export LD_LIBRARY_PATH && \
  cd /src/git/YACReaderLibraryServer && \
  qmake "CONFIG+=server_standalone" YACReaderLibraryServer.pro && \
  make && \
