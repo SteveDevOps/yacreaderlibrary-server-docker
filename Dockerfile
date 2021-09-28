@@ -38,7 +38,7 @@ RUN \
 RUN \
  echo "**** clone YACReader locally****" && \
  if [ -z ${YACR_COMMIT+x} ]; then \
-	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/develop \
+	YACR_COMMIT=$(curl -sX GET https://api.github.com/repos/YACReader/yacreader/commits/master \
 	| awk '/sha/{print $4;exit}' FS='[""]'); \
  fi && \
  git clone -b develop --single-branch https://github.com/YACReader/yacreader.git . && \
